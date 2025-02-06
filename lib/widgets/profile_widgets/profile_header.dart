@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import '../constants/instagram_colors.dart';
+import 'package:smollan_assignment/core/constants/color_constants.dart';
 
 class ProfileHeader extends StatelessWidget {
+  const ProfileHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -14,7 +18,7 @@ class ProfileHeader extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
-                colors: InstagramColors.instagramStoryGradient,
+                colors: Palette.instagramStoryGradient,
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
               ),
@@ -24,7 +28,7 @@ class ProfileHeader extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: InstagramColors.instagramWhite,
+                  color: theme.scaffoldBackgroundColor,
                 ),
                 child: CircleAvatar(
                   radius: 45,
@@ -43,18 +47,17 @@ class ProfileHeader extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: InstagramColors.instagramBlack,
                   ),
                 ),
                 SizedBox(height: 4),
                 Text(
                   'Bio goes here...\nMultiple lines of text',
-                  style: TextStyle(color: InstagramColors.instagramGray),
+                  style: TextStyle(),
                 ),
                 SizedBox(height: 4),
                 Text(
                   'www.example.com',
-                  style: TextStyle(color: InstagramColors.instagramLink),
+                  style: TextStyle(),
                 ),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smollan_assignment/features/home/views/home_page.dart';
+import 'package:smollan_assignment/features/profile/views/profile_screen.dart';
 import '../widgets/nav_bar/bottom_nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
     Container(),
     Container(),
     Container(),
-    Container()
+    ProfileScreen()
   ];
 
   void _onItemTapped(int index) {

@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
 class GeneralButton extends StatefulWidget {
-  final Color btnColor;
+  final Color? color;
   final double? width;
   final double? height;
   final double? borderRadius;
   final BoxBorder? boxBorder;
   final Color? hoverColor;
   final Color? pressedColor;
-  final Widget child;
+  final String text;
   final void Function()? onTap;
 
   const GeneralButton({
     super.key,
-    required this.btnColor,
+    this.color,
     this.width,
     this.height,
     this.borderRadius,
     this.boxBorder,
     this.hoverColor,
     this.pressedColor,
-    required this.child,
+    required this.text,
     this.onTap,
   });
 
@@ -51,6 +51,7 @@ class _GeneralButtonState extends State<GeneralButton>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTapDown: (_) => _controller.reverse(),
       onTapUp: (_) async {
@@ -66,7 +67,7 @@ class _GeneralButtonState extends State<GeneralButton>
           height: widget.height ?? 50,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: widget.btnColor,
+            color: widget.color ?? theme.primaryColor,
             borderRadius: BorderRadius.circular(12),
             border: widget.boxBorder,
           ),
@@ -85,7 +86,9 @@ class _GeneralButtonState extends State<GeneralButton>
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                child: widget.child,
+                child: Text(
+                  widget.text
+                ),
               ),
             ),
           ),

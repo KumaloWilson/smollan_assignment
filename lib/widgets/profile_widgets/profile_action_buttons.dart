@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smollan_assignment/widgets/custom_button/general_button.dart';
 
 class ProfileActionButtons extends StatelessWidget {
   const ProfileActionButtons({super.key});
@@ -10,26 +11,15 @@ class ProfileActionButtons extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text('Edit Profile'),
-              style: ElevatedButton.styleFrom(
-                primary: InstagramColors.instagramWhite,
-                onPrimary: InstagramColors.instagramBlack,
-                side: BorderSide(color: InstagramColors.instagramLightGray),
-              ),
-            ),
+            child: GeneralButton(
+              text: 'Edit Profile',
+            )
           ),
           SizedBox(width: 8),
-          ElevatedButton(
-            onPressed: () {},
-            child: Icon(Icons.person_add_outlined, color: InstagramColors.instagramBlack),
-            style: ElevatedButton.styleFrom(
-              primary: InstagramColors.instagramWhite,
-              onPrimary: InstagramColors.instagramBlack,
-              side: BorderSide(color: InstagramColors.instagramLightGray),
-              minimumSize: Size(48, 48),
-            ),
+          Expanded(
+              child: GeneralButton(
+                text: 'Edit Profile',
+              )
           ),
         ],
       ),

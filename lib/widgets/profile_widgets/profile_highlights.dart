@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../constants/instagram_colors.dart';
 
 class ProfileHighlights extends StatelessWidget {
   @override
@@ -20,7 +19,7 @@ class ProfileHighlights extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: InstagramColors.instagramLightGray,
+                      //color: InstagramColors.instagramLightGray,
                       width: 1,
                     ),
                   ),
