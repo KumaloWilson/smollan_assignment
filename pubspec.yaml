@@ -50,6 +50,9 @@ dependencies:
   font_awesome_flutter: ^10.8.0
   readmore: ^3.0.0
   video_player: ^2.9.2
+  image_picker: ^1.1.2
+  image: ^4.5.2
+  camera: ^0.11.1
 
 dev_dependencies:
   flutter_test:

@@ -4,10 +4,10 @@ import 'package:video_player/video_player.dart';
 class ReelVideoPlayer extends StatefulWidget {
   final String videoUrl;
 
-  ReelVideoPlayer({required this.videoUrl});
+  const ReelVideoPlayer({super.key, required this.videoUrl});
 
   @override
-  _ReelVideoPlayerState createState() => _ReelVideoPlayerState();
+  State<ReelVideoPlayer> createState() => _ReelVideoPlayerState();
 }
 
 class _ReelVideoPlayerState extends State<ReelVideoPlayer> {

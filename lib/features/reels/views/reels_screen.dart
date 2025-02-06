@@ -14,10 +14,7 @@ class ReelsScreen extends StatefulWidget {
 
 class _ReelsScreenState extends State<ReelsScreen> {
   final List<String> reelUrls = [
-    'https://example.com/reel1.mp4',
-    'https://example.com/reel2.mp4',
-    'https://example.com/reel3.mp4',
-    // Add more reel URLs as needed
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
   ];
 
   @override
