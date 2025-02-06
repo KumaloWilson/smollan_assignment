@@ -49,6 +49,7 @@ dependencies:
   logger: ^2.5.0
   font_awesome_flutter: ^10.8.0
   readmore: ^3.0.0
+  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_test:
