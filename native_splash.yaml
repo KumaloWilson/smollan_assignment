@@ -1,0 +1,10 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  image: assets/images/dark-logo.png
+
+  android_12:
+    image: assets/images/dark-logo.png
+
+  color: "#ffffff" # White background color for light theme
+  color_dark: "#000000" # Black background color for dark theme

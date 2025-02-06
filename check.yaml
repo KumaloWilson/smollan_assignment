@@ -1,0 +1,23 @@
+patterns: # this represents the pattern that we want found
+  - "// fix:" # here when using special characters like colon ':' yaml will interpret this as a nested object so to avoid this we use double quoted patterns like these example
+  - "// todo:"
+
+warnings: # this represents the pattern that will only log to remember that has unsolved tasks instead
+  - "// todo:"
+
+
+target: # we can explicit the file type that we wish focus to ignore the others types if this is empty, check command will check all filetypes
+  - dart
+
+skipFile: # we also can ignore subtypes like code generation files adding this here
+  - .gen.dart
+  - .freezed.dart
+
+skipFolder: # this is very helpful to avoid look to unnecessary folders
+  - /.dart_tool
+  - /.git
+  - /assets
+  - /android
+  - /ios
+  - /build
+  - /.idea
