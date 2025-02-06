@@ -14,9 +14,12 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 40),
-      decoration: const BoxDecoration(color: Colors.transparent),
+      decoration: BoxDecoration(
+        color: theme.scaffoldBackgroundColor,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
