@@ -4,6 +4,7 @@ import 'package:smollan_assignment/core/constants/image_asset_constants.dart';
 import '../../../widgets/post_widgets/post_list.dart';
 import '../../../widgets/story_widgets/story_circle.dart';
 
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
