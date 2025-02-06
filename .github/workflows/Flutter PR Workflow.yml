@@ -1,0 +1,95 @@
+name: Flutter PR Workflow
+
+on: [pull_request]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    env:
+      FLUTTER_VERSION: '3.19.5'
+    steps:
+      - name: Checkout gallery code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensures all history is checked out
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.pub-cache
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+      - name: Setup Flutter
+        uses: ./.github/actions/setup_flutter
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      - run: flutter pub get
+
+      - name: Analyze Dart Files
+        run: |
+          # Dynamically construct the repo URL using the built-in github.repository variable
+          REPO_URL="https://github.com/${{ github.repository }}.git"
+          # Ensure upstream is set to the dynamically determined repository
+          git remote add upstream $REPO_URL 2>/dev/null || true
+          git fetch upstream ${{ github.base_ref }} --quiet
+          git fetch upstream ${{ github.head_ref }} --quiet
+          # Separately handle added/modified and deleted files
+          MODIFIED_FILES=$(git diff --name-only --diff-filter=AM upstream/${{ github.base_ref }}..upstream/${{ github.head_ref }} | grep '\.dart$' || true)
+          DELETED_FILES=$(git diff --name-only --diff-filter=D upstream/${{ github.base_ref }}..upstream/${{ github.head_ref }} | grep '\.dart$' || true)
+          # Analyze added/modified files
+          if [ -n "$MODIFIED_FILES" ]; then
+            echo "Analyzing modified/added Dart files..."
+            echo "$MODIFIED_FILES" | while read file; do
+              if [ -f "$file" ]; then
+                flutter analyze "$file" || exit 1
+              else
+                echo "File $file does not exist, was expected to be added or modified."
+              fi
+            done
+          else
+            echo "No Dart files were added or modified."
+          fi
+          # Report deleted files
+          if [ -n "$DELETED_FILES" ]; then
+            echo "Deleted Dart files (not analyzed):"
+            echo "$DELETED_FILES"
+          else
+            echo "No Dart files were deleted."
+          fi
+      - name: Cache Gradle Wrapper
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-wrapper-
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/caches/build-cache-1
+            !~/.gradle/caches/*/file-access
+            !~/.gradle/caches/*/journal-1
+            !~/.gradle/caches/*/executionHistory
+            !~/.gradle/caches/journal-1
+            !~/.gradle/caches/*/fileHashes
+            !~/.gradle/caches/build-cache-1
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      # - name: Build APK
+      #   run: flutter build apk
+
+      # - name: Cache APK Output
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       build/app/outputs/flutter-apk/
+      #     key: ${{ runner.os }}-apk-${{ github.sha }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-apk-
