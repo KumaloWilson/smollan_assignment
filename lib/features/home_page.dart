@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smollan_assignment/core/constants/image_asset_constants.dart';
 import '../widgets/nav_bar/bottom_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,34 +11,49 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _screens = [
-    Container(),
-    Container(),
-    Container(),
-    Container(),
-    Container()
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      extendBody: true,
-      backgroundColor: Colors.transparent,
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+      appBar: AppBar(
+        backgroundColor: theme.scaffoldBackgroundColor,
+        title: Image.asset(
+          LocalImageConstants.secLogoDark,
+          height: 50,
+          width: 120,
+        ),
+        actions: [
+          Badge(
+            backgroundColor: Colors.red,
+            alignment: Alignment.lerp(
+                Alignment.centerRight,
+                Alignment.topCenter,
+                0.5
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.favorite_border)
+            ),
+          ),
+          Badge(
+            backgroundColor: Colors.red,
+            alignment: Alignment.lerp(
+                Alignment.centerRight,
+                Alignment.topCenter,
+                0.5
+            ),
+            label: Text(
+               '4',
+              style: theme.textTheme.bodySmall,
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(FontAwesomeIcons.facebookMessenger),
+            ),
+          ),
+        ],
       ),
     );
   }

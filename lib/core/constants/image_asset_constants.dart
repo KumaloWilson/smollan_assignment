@@ -1,5 +1,5 @@
 class LocalImageConstants {
-  static const String bg = 'assets/images/banner.jpg';
-  static const String bg2 = 'assets/images/banner2.jpg';
-  static const String emptyBox = 'assets/images/empty_box.png';
+  static const String logo = 'assets/images/logo.png';
+  static const String secLogoDark = 'assets/images/sec_logo_dark.png';
+  static const String secLogoLight = 'assets/images/sec_logo_light.png';
 }

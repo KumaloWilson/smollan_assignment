@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:smollan_assignment/core/constants/color_constants.dart';
 import 'package:smollan_assignment/features/home_page.dart';
+import 'package:smollan_assignment/features/main_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -22,11 +23,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: Palette.lightTheme,
       darkTheme: Palette.darkTheme,
       themeMode: ThemeMode.system,
-      home: HomePage()
+      home: MainScreen()
     );
   }
 }
