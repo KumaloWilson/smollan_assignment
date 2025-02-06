@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:smollan_assignment/core/constants/color_constants.dart';
+import 'package:smollan_assignment/features/home_page.dart';
 
 import 'firebase_options.dart';
 
@@ -21,18 +23,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Demo'),
-        ),
-        body: const Center(
-          child: Text('Hello, Flutter!'),
-        ),
-      )
+      theme: Palette.lightTheme,
+      darkTheme: Palette.darkTheme,
+      themeMode: ThemeMode.system,
+      home: HomePage()
     );
   }
 }
