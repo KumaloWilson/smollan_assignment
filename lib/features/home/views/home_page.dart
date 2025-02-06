@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smollan_assignment/core/constants/image_asset_constants.dart';
-import '../widgets/post_widgets/post_list.dart';
-import '../widgets/story_widgets/story_circle.dart';
+import '../../../widgets/post_widgets/post_list.dart';
+import '../../../widgets/story_widgets/story_circle.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

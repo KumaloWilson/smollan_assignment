@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smollan_assignment/features/home_page.dart';
+import 'package:smollan_assignment/features/home/views/home_page.dart';
 import '../widgets/nav_bar/bottom_nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
