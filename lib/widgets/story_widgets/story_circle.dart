@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smollan_assignment/core/constants/color_constants.dart';
 
 class StoryList extends StatelessWidget {
   const StoryList({super.key});
@@ -22,7 +23,7 @@ class StoryList extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
-                      colors: [Colors.purple, Colors.pink, Colors.orange],
+                      colors: Palette.instagramStoryGradient,
                     ),
                   ),
                   child: Padding(
