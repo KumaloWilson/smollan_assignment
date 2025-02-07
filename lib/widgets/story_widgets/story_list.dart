@@ -13,7 +13,7 @@ class StoryList extends StatelessWidget {
       height: 130,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: stories.length,
         itemBuilder: (context, index) {
           final story = stories[index];
           return StoryCircle(

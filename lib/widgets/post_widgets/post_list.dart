@@ -16,6 +16,5 @@ class PostList extends StatelessWidget {
         return PostWidget(post: post);
       },
     );
-
   }
 }
