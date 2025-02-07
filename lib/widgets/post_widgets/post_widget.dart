@@ -1,8 +1,8 @@
+import 'package:face_pile/face_pile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readmore/readmore.dart';
 import 'package:smollan_assignment/widgets/post_widgets/reaction_button.dart';
-
 import '../../models/post_model.dart';
 
 class PostWidget extends StatelessWidget {
@@ -34,19 +34,19 @@ class PostWidget extends StatelessWidget {
               ReactionButton(
                 label: 'like',
                 icon: FontAwesomeIcons.heart,
-                value: '1,234',
+                value: '123',
                 onTap: () {},
               ),
               ReactionButton(
                 label: 'comment',
                 icon: FontAwesomeIcons.comment,
-                value: '1,234',
+                value: '56',
                 onTap: () {},
               ),
               ReactionButton(
                 label: 'share',
                 icon: FontAwesomeIcons.paperPlane,
-                value: '1,234',
+                value: '78',
                 onTap: () {},
               ),
               Spacer(),
@@ -56,6 +56,27 @@ class PostWidget extends StatelessWidget {
             ],
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+
+          child: Row(
+            children: [
+              FacePile(
+                radius: 10,
+                space: 16,
+                images: [
+                  NetworkImage("https://i.pravatar.cc/300?img=1"),
+                  NetworkImage("https://i.pravatar.cc/300?img=2"),
+                  NetworkImage("https://i.pravatar.cc/300?img=3"),
+                  NetworkImage("https://i.pravatar.cc/300?img=4"),
+                ],
+              ),
+              SizedBox(width: 8),
+              Text('Liked by ${post.likes}', style: TextStyle(fontSize: 12)),
+            ],
+          ),
+        ),
+        SizedBox(height: 4),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
