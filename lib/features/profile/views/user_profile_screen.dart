@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:smollan_assignment/core/constants/color_constants.dart';
+import 'package:smollan_assignment/providers/theme_provider.dart';
 
 import '../../../providers/profile_provider.dart';
 import '../../../widgets/error_widgets/error_widget.dart';
@@ -54,10 +55,27 @@ class _UserProfileScreenState extends State<UserProfileScreen> with SingleTicker
             icon: Icon(FontAwesomeIcons.bell),
             onPressed: () {},
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {},
+          PopupMenuButton<ThemeMode>(
+            icon: Icon(Icons.more_vert), // More options icon
+            onSelected: (ThemeMode mode) {
+              Provider.of<ThemeProvider>(context, listen: false).setThemeMode(mode);
+            },
+            itemBuilder: (BuildContext context) => [
+              PopupMenuItem(
+                value: ThemeMode.light,
+                child: Text("Light Theme"),
+              ),
+              PopupMenuItem(
+                value: ThemeMode.dark,
+                child: Text("Dark Theme"),
+              ),
+              PopupMenuItem(
+                value: ThemeMode.system,
+                child: Text("System Theme"),
+              ),
+            ],
           ),
+
         ],
       ),
       body: Consumer<ProfileProvider>(
