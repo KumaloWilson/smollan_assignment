@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import '../skeleton_widgets/image_skeleton.dart';
+
 class ReelVideoPlayer extends StatefulWidget {
   final String videoUrl;
 
@@ -37,7 +39,7 @@ class _ReelVideoPlayerState extends State<ReelVideoPlayer> {
             aspectRatio: _controller.value.aspectRatio,
             child: VideoPlayer(_controller),
           )
-        : Center(child: CircularProgressIndicator());
+        : ImageSkeleton();
   }
 }
 

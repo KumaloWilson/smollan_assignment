@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:smollan_assignment/core/utils/logs.dart';
 
-class CameraPreviewWidget extends StatefulWidget {
-  const CameraPreviewWidget({super.key});
+class CameraView extends StatefulWidget {
+  const CameraView({super.key});
 
   @override
-  State<CameraPreviewWidget> createState() => _CameraPreviewWidgetState();
+  State<CameraView> createState() => _CameraViewState();
 }
 
-class _CameraPreviewWidgetState extends State<CameraPreviewWidget> {
-  late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
+class _CameraViewState extends State<CameraView> {
+  CameraController? _controller;
+  Future<void>? _initializeControllerFuture;
 
   @override
   void initState() {
@@ -19,33 +20,51 @@ class _CameraPreviewWidgetState extends State<CameraPreviewWidget> {
   }
 
   Future<void> _initializeCamera() async {
-    final cameras = await availableCameras();
-    final firstCamera = cameras.first;
+    try {
+      final cameras = await availableCameras();
+      if (cameras.isEmpty) {
+        throw CameraException('No cameras found', 'No cameras are available on this device.');
+      }
+      final firstCamera = cameras.first;
 
-    _controller = CameraController(
-      firstCamera,
-      ResolutionPreset.medium,
-    );
+      final controller = CameraController(
+        firstCamera,
+        ResolutionPreset.medium,
+      );
 
-    _initializeControllerFuture = _controller.initialize();
-    if (mounted) {
-      setState(() {});
+      _initializeControllerFuture = controller.initialize();
+
+      if (mounted) {
+        setState(() {
+          _controller = controller;
+        });
+      }
+    } catch (e) {
+      DevLogs.logError('Error initializing camera: $e');
     }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_controller == null || _initializeControllerFuture == null) {
+      return Center(child: CircularProgressIndicator());
+    }
+
     return FutureBuilder<void>(
       future: _initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return CameraPreview(_controller);
+          return Stack(
+            children: [
+              CameraPreview(_controller!),
+            ],
+          );
         } else {
           return Center(child: CircularProgressIndicator());
         }

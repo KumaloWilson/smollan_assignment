@@ -9,7 +9,7 @@ class ReelBottomOverlay extends StatelessWidget {
     return Positioned(
       left: 0,
       right: 0,
-      bottom: 0,
+      bottom: 70,
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -28,7 +28,7 @@ class ReelBottomOverlay extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  radius: 16,
+                  radius: 25,
                   backgroundImage: NetworkImage('https://picsum.photos/100'),
                 ),
                 SizedBox(width: 8),
@@ -36,24 +36,30 @@ class ReelBottomOverlay extends StatelessWidget {
                   'username',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: Colors.white
                   ),
                 ),
-                SizedBox(width: 8),
-                GeneralButton(text: 'Follow',)
+                SizedBox(width: 16),
+                GeneralButton(width: 90, height: 35, text: 'Follow',color: Colors.transparent, boxBorder: Border.all(color: Colors.white), )
               ],
             ),
             SizedBox(height: 8),
             Text(
               'Video caption goes here... #reels #instagram',
+              style: TextStyle(
+                  color: Colors.white
+              ),
             ),
             SizedBox(height: 8),
             Row(
               children: [
-                Icon(Icons.music_note, size: 16),
+                Icon(Icons.music_note, size: 16, color: Colors.white,),
                 SizedBox(width: 4),
                 Text(
                   'Original Audio',
-                  style: TextStyle(),
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
                 ),
               ],
             ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/color_constants.dart';
+
 class GeneralButton extends StatefulWidget {
   final Color? color;
+  final Color? textColor;
   final double? width;
   final double? height;
   final double? borderRadius;
@@ -14,6 +17,7 @@ class GeneralButton extends StatefulWidget {
   const GeneralButton({
     super.key,
     this.color,
+    this.textColor,
     this.width,
     this.height,
     this.borderRadius,
@@ -64,7 +68,7 @@ class _GeneralButtonState extends State<GeneralButton>
         scale: _controller,
         child: Container(
           width: widget.width ?? 300,
-          height: widget.height ?? 50,
+          height: widget.height ?? 40,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: widget.color ?? theme.primaryColor,
@@ -87,7 +91,10 @@ class _GeneralButtonState extends State<GeneralButton>
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                 child: Text(
-                  widget.text
+                  widget.text,
+                  style: TextStyle(
+                    color: widget.textColor ?? Palette.instagramWhite,
+                  ),
                 ),
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smollan_assignment/features/home/views/home_page.dart';
 import 'package:smollan_assignment/features/new_post/views/new_post_screen.dart';
-import 'package:smollan_assignment/features/profile/views/profile_screen.dart';
+import 'package:smollan_assignment/features/profile/views/user_profile_screen.dart';
 import 'package:smollan_assignment/features/reels/views/reels_screen.dart';
 import 'package:smollan_assignment/features/search/search_screen.dart';
 import '../widgets/nav_bar/bottom_nav_bar.dart';
@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
     SearchScreen(),
     NewPostScreen(),
     ReelsScreen(),
-    ProfileScreen()
+    UserProfileScreen(username: 'Smollan')
   ];
 
   void _onItemTapped(int index) {
