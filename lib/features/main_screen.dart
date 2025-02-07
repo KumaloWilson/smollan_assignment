@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smollan_assignment/features/home/views/home_page.dart';
 import 'package:smollan_assignment/features/new_post/views/new_post_screen.dart';
 import 'package:smollan_assignment/features/profile/views/user_profile_screen.dart';
 import 'package:smollan_assignment/features/reels/views/reels_screen.dart';
 import 'package:smollan_assignment/features/search/search_screen.dart';
 import '../widgets/nav_bar/bottom_nav_bar.dart';
+import '../providers/tab_provider.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key});
 
   final List<Widget> _screens = [
     HomePage(),
@@ -24,26 +19,21 @@ class _MainScreenState extends State<MainScreen> {
     UserProfileScreen(username: 'Smollan')
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final tabProvider = Provider.of<TabProvider>(context);
+
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.transparent,
       body: IndexedStack(
-        index: _selectedIndex,
+        index: tabProvider.selectedIndex,
         children: _screens,
       ),
       bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+        selectedIndex: tabProvider.selectedIndex,
+        onItemTapped: (index) => tabProvider.setTab(index),
       ),
     );
   }
 }
-

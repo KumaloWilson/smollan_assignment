@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smollan_assignment/providers/tab_provider.dart';
 
 import '../../../widgets/reels_widget/reel_bottom_overlay.dart';
 import '../../../widgets/reels_widget/reel_interaction_sidebar.dart';
@@ -14,16 +16,20 @@ class ReelsScreen extends StatefulWidget {
 class _ReelsScreenState extends State<ReelsScreen> with AutomaticKeepAliveClientMixin {
   final List<String> reelUrls = [
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://media.w3.org/2010/05/sintel/trailer.mp4',
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://media.w3.org/2010/05/sintel/trailer.mp4',
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://media.w3.org/2010/05/sintel/trailer.mp4',
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://media.w3.org/2010/05/sintel/trailer.mp4',
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://media.w3.org/2010/05/sintel/trailer.mp4',
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
-    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://media.w3.org/2010/05/sintel/trailer.mp4',
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
   ];
 
-  int _currentIndex = 0;
 
   @override
   bool get wantKeepAlive => true;
@@ -54,9 +60,7 @@ class _ReelsScreenState extends State<ReelsScreen> with AutomaticKeepAliveClient
         scrollDirection: Axis.vertical,
         itemCount: reelUrls.length,
         onPageChanged: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+
         },
         itemBuilder: (context, index) {
           return Stack(
@@ -64,7 +68,7 @@ class _ReelsScreenState extends State<ReelsScreen> with AutomaticKeepAliveClient
             children: [
               ReelVideoPlayer(
                 videoUrl: reelUrls[index],
-                isActive: index == _currentIndex,
+                isActive: Provider.of<TabProvider>(context).selectedIndex == 3,
               ),
               ReelInteractionSidebar(),
               ReelBottomOverlay(),

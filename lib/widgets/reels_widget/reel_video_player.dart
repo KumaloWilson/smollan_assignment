@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smollan_assignment/core/utils/logs.dart';
 import 'package:video_player/video_player.dart';
 import '../skeleton_widgets/image_skeleton.dart';
 
@@ -46,7 +47,7 @@ class _ReelVideoPlayerState extends State<ReelVideoPlayer> {
       }
       _controller.setLooping(true);
     } catch (e) {
-      print("Error initializing video player: $e");
+      DevLogs.logError("Error initializing video player: $e");
     }
   }
 
