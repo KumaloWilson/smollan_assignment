@@ -109,9 +109,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> with SingleTicker
                           Tab(icon: Icon(Icons.video_library)),
                           Tab(icon: Icon(Icons.person_pin_outlined)),
                         ],
-                        indicatorColor: theme.primaryColor,
-                        unselectedLabelColor: theme.unselectedWidgetColor,
-                        labelColor: Palette.instagramWhite,
+                        // indicatorColor: theme.primaryColor,
+                        // unselectedLabelColor: theme.unselectedWidgetColor,
+                        // labelColor: Palette.instagramWhite,
                       ),
                     ),
                   ),
@@ -161,7 +161,6 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
       child: _tabBar,
     );
   }

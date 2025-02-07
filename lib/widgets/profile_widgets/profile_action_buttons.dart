@@ -23,7 +23,7 @@ class ProfileActionButtons extends StatelessWidget {
           Expanded(
               child: GeneralButton(
                 text: 'Message',
-                color: Palette.instagramGray,
+                color: Palette.instagramLightGray,
               )
           ),
 
@@ -36,7 +36,7 @@ class ProfileActionButtons extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: Palette.instagramGray,
+                  color: Palette.instagramLightGray,
                   borderRadius: BorderRadius.circular(12),
                 ),
 
