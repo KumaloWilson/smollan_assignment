@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smollan_assignment/core/constants/image_asset_constants.dart';
 import 'package:smollan_assignment/widgets/story_widgets/story_list.dart';
 import '../../../providers/feed_provider.dart';
+import '../../../providers/theme_provider.dart';
 import '../../../widgets/post_widgets/post_list.dart';
 import '../../../widgets/story_widgets/story_circle.dart';
 
@@ -29,13 +30,20 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.scaffoldBackgroundColor,
         title: Image.asset(
-          LocalImageConstants.secLogoDark,
+          themeProvider.themeMode == ThemeMode.dark
+              ? LocalImageConstants.secLogoDark
+              : themeProvider.themeMode == ThemeMode.light
+              ? LocalImageConstants.secLogoLight
+              : MediaQuery.of(context).platformBrightness == Brightness.dark
+              ? LocalImageConstants.secLogoDark
+              : LocalImageConstants.secLogoLight,
           height: 50,
           width: 120,
         ),
