@@ -1,49 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:smollan_assignment/core/constants/color_constants.dart';
-import 'package:smollan_assignment/widgets/profile_widgets/profile_stats.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  final String profilePic;
+  final int posts;
+  final int followers;
+  final int following;
+
+  const ProfileHeader({
+    super.key,
+    required this.profilePic,
+    required this.posts,
+    required this.followers,
+    required this.following,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          Container(
-            width: 96,
-            height: 96,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                colors: Palette.instagramStoryGradient,
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: theme.scaffoldBackgroundColor,
-                ),
-                child: CircleAvatar(
-                  radius: 45,
-                  backgroundImage: NetworkImage('https://picsum.photos/200'),
-                ),
-              ),
-            ),
+          CircleAvatar(
+            radius: 40,
+            backgroundImage: NetworkImage(profilePic),
           ),
           SizedBox(width: 16),
           Expanded(
-            child: ProfileStats()
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildStatColumn('Posts', posts.toString()),
+                _buildStatColumn('Followers', followers.toString()),
+                _buildStatColumn('Following', following.toString()),
+              ],
+            ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildStatColumn(String label, String count) {
+    return Column(
+      children: [
+        Text(count, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text(label),
+      ],
     );
   }
 }

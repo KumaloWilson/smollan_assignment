@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../widgets/profile_widgets/my_highlights.dart';
+import '../../../widgets/profile_widgets/my_profile_header.dart';
+import '../../../widgets/profile_widgets/my_profile_post_grid.dart';
 import '../../../widgets/profile_widgets/profile_action_buttons.dart';
 import '../../../widgets/profile_widgets/profile_header.dart';
 import '../../../widgets/profile_widgets/profile_highlights.dart';
@@ -35,12 +38,12 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ProfileHeader(),
+          MyProfileHeader(),
           ProfileStats(),
           ProfileActionButtons(showAddButton: false,),
-          ProfileHighlights(),
+          MyProfileHighlights(),
           Divider(),
-          ProfilePostsGrid(),
+          MyProfilePostsGrid(),
         ],
       ),
     );

@@ -20,7 +20,7 @@ class PostWidget extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => UserProfileScreen(),
+                builder: (context) => UserProfileScreen(username: post.username,),
               )
             );
           },

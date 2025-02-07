@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../models/gallery_item_model.dart';
 
 class ProfilePostsGrid extends StatelessWidget {
+  final List<GalleryItem> posts;
+  final Function(int) onPostTap;
+
+  const ProfilePostsGrid({super.key, required this.posts, required this.onPostTap});
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -8,14 +14,17 @@ class ProfilePostsGrid extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        crossAxisSpacing: 1,
-        mainAxisSpacing: 1,
+        crossAxisSpacing: 2,
+        mainAxisSpacing: 2,
       ),
-      itemCount: 30,
+      itemCount: posts.length,
       itemBuilder: (context, index) {
-        return Image.network(
-          'https://picsum.photos/200',
-          fit: BoxFit.cover,
+        return GestureDetector(
+          onTap: () => onPostTap(index),
+          child: Image.network(
+            posts[index].image,
+            fit: BoxFit.cover,
+          ),
         );
       },
     );
