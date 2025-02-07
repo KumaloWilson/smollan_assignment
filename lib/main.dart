@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smollan_assignment/core/constants/color_constants.dart';
 import 'package:smollan_assignment/features/main_screen.dart';
 import 'package:smollan_assignment/providers/feed_provider.dart';
+import 'package:smollan_assignment/providers/new_post_provider.dart';
 import 'package:smollan_assignment/providers/post_provider.dart';
 import 'package:smollan_assignment/providers/profile_provider.dart';
 import 'package:smollan_assignment/providers/theme_provider.dart';
@@ -24,6 +25,7 @@ void main() async{
         ChangeNotifierProvider(create: (_) => FeedProvider()),
         ChangeNotifierProvider(create: (_) => PostProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => NewPostProvider()),
       ],
       child: MyApp(),
     ),

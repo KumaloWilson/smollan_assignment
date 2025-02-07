@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../core/constants/color_constants.dart';
+import 'package:smollan_assignment/features/new_post/views/edit_post_screen.dart';
+
 import '../../../widgets/new_post/camera_preview_widget.dart';
 import '../../../widgets/new_post/gallery_grid_widget.dart';
-import 'edit_post_screen.dart';
 
 class NewPostScreen extends StatefulWidget {
   const NewPostScreen({super.key});
@@ -11,106 +11,65 @@ class NewPostScreen extends StatefulWidget {
   State<NewPostScreen> createState() => _NewPostScreenState();
 }
 
-class _NewPostScreenState extends State<NewPostScreen> {
-  bool _isGalleryView = true;
+class _NewPostScreenState extends State<NewPostScreen> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(_handleTabSelection);
+  }
+
+  void _handleTabSelection() {
+    if (_tabController.indexIsChanging) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.scaffoldBackgroundColor,
+        backgroundColor: Colors.black,
         leading: IconButton(
-          icon: Icon(Icons.close,),
+          icon: Icon(Icons.close, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-
-        title: Text(
-          'New Post',
-          style: TextStyle(),
-        ),
+        title: Text('New Post', style: TextStyle(color: Colors.white)),
         actions: [
           TextButton(
-            child: Text(
-              'Next',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: Text('Next', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
             onPressed: () {
-              // Navigate to EditPostScreen
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => EditPostScreen()),
+                MaterialPageRoute(builder: (context) => PostEditView()),
               );
             },
           ),
         ],
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(text: 'GALLERY'),
+            Tab(text: 'PHOTO'),
+          ],
+          indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey,
+        ),
       ),
-      body: Column(
+      body: TabBarView(
+        controller: _tabController,
         children: [
-          Expanded(
-            child: _isGalleryView ? GalleryGridWidget() : CameraPreviewWidget(),
-          ),
-          _buildBottomBar(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomBar() {
-    final theme = Theme.of(context);
-
-    return Container(
-      color: theme.scaffoldBackgroundColor,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildBottomBarButton('Gallery', Icons.photo_library, _isGalleryView),
-              _buildBottomBarButton('Photo', Icons.camera_alt, !_isGalleryView),
-            ],
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Recents',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 8),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomBarButton(String label, IconData icon, bool isSelected) {
-
-    final theme = Theme.of(context);
-
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _isGalleryView = label == 'Gallery';
-        });
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? Palette.instagramBlue : theme.scaffoldBackgroundColor,
-          ),
-          SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: isSelected ? Palette.instagramBlue : theme.scaffoldBackgroundColor,
-            ),
-          ),
+          GalleryView(),
+          CameraView(),
         ],
       ),
     );
