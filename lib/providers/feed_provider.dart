@@ -19,7 +19,12 @@ class FeedProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _feed = await _apiServices.getFeed();
+      final response = await _apiServices.getFeed();
+      if (response.success) {
+        _feed = response.data;
+      } else {
+        _error = response.message;
+      }
     } catch (e) {
       _error = e.toString();
     } finally {
@@ -35,9 +40,7 @@ class FeedProvider extends ChangeNotifier {
         username: post.username,
         profilePic: post.profilePic,
         image: post.image,
-        likes: post.likes + 1,
-        postDate: post.postDate,
-        postText: post.postText ,
+        likes: post.likes,
         caption: post.caption,
       );
       _feed!.posts[postIndex] = post;

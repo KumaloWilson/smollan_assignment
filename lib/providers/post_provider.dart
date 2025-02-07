@@ -18,7 +18,12 @@ class PostProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _post = await _apiServices.getPost();
+      final response = await _apiServices.getPost();
+      if (response.success) {
+        _post = response.data;
+      } else {
+        _error = response.message;
+      }
     } catch (e) {
       _error = e.toString();
     } finally {
@@ -33,10 +38,8 @@ class PostProvider extends ChangeNotifier {
         username: _post!.username,
         profilePic: _post!.profilePic,
         image: _post!.image,
-        likes: _post!.likes + 1,
+        likes: _post!.likes,
         caption: _post!.caption,
-        postDate: _post!.postDate,
-        postText: _post!.postText,
       );
       notifyListeners();
     }

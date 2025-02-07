@@ -18,7 +18,12 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _profile = await _apiServices.getProfile();
+      final response = await _apiServices.getProfile();
+      if (response.success) {
+        _profile = response.data;
+      } else {
+        _error = response.message;
+      }
     } catch (e) {
       _error = e.toString();
     } finally {
