@@ -100,12 +100,15 @@ class _HomePageState extends State<HomePage> {
             );
           } else {
 
-            return ListView(
-              physics: BouncingScrollPhysics(),
-              children: [
-                StoryList(stories: feedProvider.feedModel!.stories),
-                PostList(posts: feedProvider.feedModel!.posts),
-              ],
+            return RefreshIndicator(
+              onRefresh: feedProvider.fetchFeed,
+              child: ListView(
+                physics: BouncingScrollPhysics(),
+                children: [
+                  StoryList(stories: feedProvider.feedModel!.stories),
+                  PostList(posts: feedProvider.feedModel!.posts, refresher: feedProvider.fetchFeed),
+                ],
+              ),
             );
           }
         },

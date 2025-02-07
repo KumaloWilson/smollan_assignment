@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smollan_assignment/core/constants/color_constants.dart';
 
 import '../../../providers/profile_provider.dart';
+import '../../../widgets/error_widgets/error_widget.dart';
 import '../../../widgets/profile_widgets/profile_about.dart';
 import '../../../widgets/profile_widgets/profile_action_buttons.dart';
 import '../../../widgets/profile_widgets/profile_header.dart';
@@ -64,9 +65,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> with SingleTicker
           if (profileProvider.isLoading) {
             return Center(child: CircularProgressIndicator());
           } else if (profileProvider.error != null) {
-            return Center(child: Text('Error: ${profileProvider.error}'));
+            return ErrorScreen(
+              message: profileProvider.error!,
+              onRetry: profileProvider.fetchProfile,
+            );
           } else if (profileProvider.profile == null) {
-            return Center(child: Text('No profile data available'));
+            return ErrorScreen(
+              message: 'No profile data available',
+              onRetry: profileProvider.fetchProfile,
+            );
           } else {
             final profile = profileProvider.profile!;
             return NestedScrollView(

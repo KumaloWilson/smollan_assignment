@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:face_pile/face_pile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readmore/readmore.dart';
 import 'package:smollan_assignment/widgets/post_widgets/reaction_button.dart';
+import 'package:smollan_assignment/widgets/skeleton_widgets/image_skeleton.dart';
 import '../../features/profile/views/user_profile_screen.dart';
 import '../../models/post_model.dart';
 
@@ -31,10 +33,11 @@ class PostWidget extends StatelessWidget {
           //subtitle: Text(post.location),
           trailing: Icon(Icons.more_vert),
         ),
-        Image.network(
-          post.image,
+        CachedNetworkImage(
+          imageUrl: post.image,
           fit: BoxFit.cover,
           width: double.infinity,
+          placeholder: (context, url) => ImageSkeleton()
         ),
         Container(
           padding: const EdgeInsets.all(16.0),
