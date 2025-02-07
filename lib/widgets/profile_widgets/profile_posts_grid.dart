@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../features/posts/views/user_post.dart';
 import '../../models/gallery_item_model.dart';
 
 class ProfilePostsGrid extends StatelessWidget {
@@ -24,7 +25,7 @@ class ProfilePostsGrid extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PostScreen(postId: posts[index].id),
+                builder: (context) => PostScreen(postId: posts[index].image),
               ),
             );
           },

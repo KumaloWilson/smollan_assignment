@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/post_provider.dart';
+import '../../../widgets/post_widgets/post_actions.dart';
+import '../../../widgets/post_widgets/post_caption.dart';
+import '../../../widgets/post_widgets/post_comments.dart';
+import '../../../widgets/post_widgets/post_header.dart';
+import '../../../widgets/post_widgets/post_image.dart';
+import '../../../widgets/post_widgets/post_likes.dart';
 class PostScreen extends StatefulWidget {
   final String postId;
 
