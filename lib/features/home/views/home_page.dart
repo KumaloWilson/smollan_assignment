@@ -93,12 +93,15 @@ class _HomePageState extends State<HomePage> {
               message: feedProvider.error!,
               onRetry: feedProvider.fetchFeed,
             );
-          } else if (feedProvider.feedModel == null) {
-            return ErrorScreen(
-              message: 'No post data available',
-              onRetry: feedProvider.fetchFeed,
+          } else if (feedProvider.feedModel == null ) {
+            return ListView(
+              physics: BouncingScrollPhysics(),
+              children: [
+                StoryList(stories: []),
+                PostSkeleton()
+              ],
             );
-          } else {
+          }else {
 
             return RefreshIndicator(
               onRefresh: feedProvider.fetchFeed,
