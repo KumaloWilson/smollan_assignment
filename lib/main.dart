@@ -7,6 +7,7 @@ import 'package:smollan_assignment/providers/feed_provider.dart';
 import 'package:smollan_assignment/providers/new_post_provider.dart';
 import 'package:smollan_assignment/providers/post_provider.dart';
 import 'package:smollan_assignment/providers/profile_provider.dart';
+import 'package:smollan_assignment/providers/search_provider.dart';
 import 'package:smollan_assignment/providers/theme_provider.dart';
 
 import 'firebase_options.dart';
@@ -26,6 +27,7 @@ void main() async{
         ChangeNotifierProvider(create: (_) => PostProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => NewPostProvider()),
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
       ],
       child: MyApp(),
     ),
