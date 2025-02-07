@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ReelInteractionSidebar extends StatelessWidget {
   const ReelInteractionSidebar({super.key});
@@ -14,9 +15,9 @@ class ReelInteractionSidebar extends StatelessWidget {
           children: [
             _buildInteractionButton(Icons.favorite_outline, '1.2M'),
             SizedBox(height: 16),
-            _buildInteractionButton(Icons.chat_bubble_outline, '1.2K'),
+            _buildInteractionButton(FontAwesomeIcons.comment, '1.2K'),
             SizedBox(height: 16),
-            _buildInteractionButton(Icons.send_outlined, 'Send'),
+            _buildInteractionButton(FontAwesomeIcons.paperPlane, 'Send'),
             SizedBox(height: 16),
             _buildInteractionButton(Icons.more_horiz, ''),
             SizedBox(height: 16),
@@ -44,11 +45,11 @@ class ReelInteractionSidebar extends StatelessWidget {
   Widget _buildInteractionButton(IconData icon, String label) {
     return Column(
       children: [
-        Icon(icon,  size: 28),
+        Icon(icon,  size: 28 , color: Colors.white,),
         SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle( fontSize: 12),
+          style: TextStyle( fontSize: 12, color: Colors.white),
         ),
       ],
     );

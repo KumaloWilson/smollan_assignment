@@ -15,6 +15,13 @@ class ReelsScreen extends StatefulWidget {
 class _ReelsScreenState extends State<ReelsScreen> {
   final List<String> reelUrls = [
     'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
+    'https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4',
   ];
 
   @override
@@ -28,11 +35,12 @@ class _ReelsScreenState extends State<ReelsScreen> {
           'Reels',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: Colors.white
           ),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.camera_alt_outlined, ),
+            icon: Icon(Icons.camera_alt_outlined,color: Colors.white ),
             onPressed: () {},
           ),
         ],

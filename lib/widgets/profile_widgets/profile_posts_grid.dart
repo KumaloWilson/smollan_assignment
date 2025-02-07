@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../features/posts/views/user_post.dart';
 import '../../models/gallery_item_model.dart';
+import '../skeleton_widgets/image_skeleton.dart';
 
 class ProfilePostsGrid extends StatelessWidget {
   final List<GalleryItem> posts;
@@ -29,9 +31,11 @@ class ProfilePostsGrid extends StatelessWidget {
               ),
             );
           },
-          child: Image.network(
-            posts[index].image,
+          child: CachedNetworkImage(
+            imageUrl: posts[index].image,
             fit: BoxFit.cover,
+            placeholder: (context, url) => ImageSkeleton(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         );
       },
