@@ -19,7 +19,7 @@ class ReelInteractionSidebar extends StatelessWidget {
             SizedBox(height: 16),
             _buildInteractionButton(FontAwesomeIcons.paperPlane, 'Send'),
             SizedBox(height: 16),
-            _buildInteractionButton(Icons.more_horiz, ''),
+            _buildInteractionButton(Icons.more_vert, ''),
             SizedBox(height: 16),
             Container(
               width: 32,
@@ -36,6 +36,9 @@ class ReelInteractionSidebar extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 80,
+            )
           ],
         ),
       ),
