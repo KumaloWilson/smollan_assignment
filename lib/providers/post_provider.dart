@@ -7,14 +7,17 @@ class PostProvider extends ChangeNotifier {
   UserPost? _post;
   bool _isLoading = false;
   String? _error;
+  bool _isLiked = false;
 
   UserPost? get post => _post;
   bool get isLoading => _isLoading;
   String? get error => _error;
+  bool get isLiked => _isLiked;
 
   Future<void> fetchPost(String postId) async {
     _isLoading = true;
     _error = null;
+    _isLiked = false; // Reset like state
     notifyListeners();
 
     try {
@@ -32,19 +35,26 @@ class PostProvider extends ChangeNotifier {
     }
   }
 
-  void incrementLikes() {
+  void toggleLike() {
     if (_post != null) {
+      _isLiked = !_isLiked;
+
+      // Update likes based on like state
       _post = UserPost(
         username: _post!.username,
         profilePic: _post!.profilePic,
         image: _post!.image,
-        likes: _post!.likes + 1,
+        likes: _isLiked ? _post!.likes + 1 : _post!.likes - 1,
         caption: _post!.caption,
         postDate: _post!.postDate,
         postText: _post!.postText,
       );
+
       notifyListeners();
     }
   }
-}
 
+  void incrementLikes() {
+    toggleLike();
+  }
+}
