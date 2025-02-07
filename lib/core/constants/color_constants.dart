@@ -56,7 +56,7 @@ class Palette {
   /// The dark theme configuration for the application.
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: instagramBlue,
+    primaryColor: instagramDarkGray,
     hintColor: instagramPink,
     scaffoldBackgroundColor: instagramBlack,
     appBarTheme: const AppBarTheme(

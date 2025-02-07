@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
         children: [
           ProfileHeader(),
           ProfileStats(),
-          ProfileActionButtons(),
+          ProfileActionButtons(showAddButton: false,),
           ProfileHighlights(),
           Divider(),
           ProfilePostsGrid(),

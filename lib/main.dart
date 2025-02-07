@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smollan_assignment/core/constants/color_constants.dart';
 import 'package:smollan_assignment/features/main_screen.dart';
 import 'package:smollan_assignment/providers/feed_provider.dart';
 import 'package:smollan_assignment/providers/post_provider.dart';
@@ -39,8 +40,8 @@ class MyApp extends StatelessWidget {
       builder: (context, themeProvider, child) {
         return MaterialApp(
           title: 'Instagram Clone',
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
+          theme: Palette.lightTheme,
+          darkTheme: Palette.darkTheme,
           themeMode: themeProvider.themeMode,
           home: MainScreen(),
         );

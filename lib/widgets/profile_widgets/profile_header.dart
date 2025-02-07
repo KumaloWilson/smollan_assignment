@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smollan_assignment/core/constants/color_constants.dart';
+import 'package:smollan_assignment/widgets/profile_widgets/profile_stats.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});
@@ -39,28 +40,7 @@ class ProfileHeader extends StatelessWidget {
           ),
           SizedBox(width: 16),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Display Name',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'Bio goes here...\nMultiple lines of text',
-                  style: TextStyle(),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'www.example.com',
-                  style: TextStyle(),
-                ),
-              ],
-            ),
+            child: ProfileStats()
           ),
         ],
       ),

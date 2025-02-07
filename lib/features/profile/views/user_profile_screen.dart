@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../models/profile_model.dart';
+import '../../../widgets/profile_widgets/profile_about.dart';
 import '../../../widgets/profile_widgets/profile_action_buttons.dart';
 import '../../../widgets/profile_widgets/profile_header.dart';
 import '../../../widgets/profile_widgets/profile_highlights.dart';
@@ -7,7 +10,7 @@ import '../../../widgets/profile_widgets/profile_stats.dart';
 
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({super.key});
+  const UserProfileScreen({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +20,15 @@ class UserProfileScreen extends StatelessWidget {
         backgroundColor: theme.scaffoldBackgroundColor,
         elevation: 0,
         title: Text(
-          'username',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          "userProfile.username",
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.add_box_outlined,),
+            icon: Icon(FontAwesomeIcons.bell),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.menu,),
+            icon: Icon(Icons.more_vert),
             onPressed: () {},
           ),
         ],
@@ -36,8 +36,8 @@ class UserProfileScreen extends StatelessWidget {
       body: ListView(
         children: [
           ProfileHeader(),
-          ProfileStats(),
-          ProfileActionButtons(),
+          ProfileAbout(),
+          ProfileActionButtons(showAddButton: true,),
           ProfileHighlights(),
           Divider(),
           ProfilePostsGrid(),

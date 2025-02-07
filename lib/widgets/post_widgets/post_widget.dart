@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readmore/readmore.dart';
 import 'package:smollan_assignment/widgets/post_widgets/reaction_button.dart';
-import '../../features/profile/views/my_profile_screen.dart';
+import '../../features/profile/views/user_profile_screen.dart';
 import '../../models/post_model.dart';
 
 class PostWidget extends StatelessWidget {
