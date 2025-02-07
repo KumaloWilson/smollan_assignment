@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../models/post_model.dart';
+import '../models/userpost_model.dart';
 import '../services/api_services.dart';
 
 class PostProvider extends ChangeNotifier {
   final APIServices _apiServices = APIServices();
-  PostModel? _post;
+  UserPost? _post;
   bool _isLoading = false;
   String? _error;
 
-  PostModel? get post => _post;
+  UserPost? get post => _post;
   bool get isLoading => _isLoading;
   String? get error => _error;
 
@@ -18,7 +18,12 @@ class PostProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _post = await _apiServices.getPost(postId);
+      final response = await _apiServices.getPost();
+      if (response.success) {
+        _post = response.data;
+      } else {
+        _error = response.message;
+      }
     } catch (e) {
       _error = e.toString();
     } finally {
@@ -29,7 +34,7 @@ class PostProvider extends ChangeNotifier {
 
   void incrementLikes() {
     if (_post != null) {
-      _post = PostModel(
+      _post = UserPost(
         username: _post!.username,
         profilePic: _post!.profilePic,
         image: _post!.image,

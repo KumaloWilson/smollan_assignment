@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:smollan_assignment/core/utils/api_response.dart';
 import 'package:smollan_assignment/core/utils/logs.dart';
+import 'package:smollan_assignment/models/userpost_model.dart';
 import '../models/feed_model.dart';
-import '../models/post_model.dart';
 import '../models/profile_model.dart';
 
 class APIServices {
@@ -25,11 +25,11 @@ class APIServices {
     }
   }
 
-  Future<APIResponse<Post>> getPost() async {
+  Future<APIResponse<UserPost>> getPost() async {
     try {
       final response = await http.get(Uri.parse('$baseUrl/getPostAPI'));
       if (response.statusCode == 200) {
-        final post = Post.fromJson(json.decode(response.body));
+        final post = UserPost.fromJson(json.decode(response.body));
         return APIResponse(success: true, data: post, message: 'Post fetched successfully');
       } else {
         DevLogs.logError('Failed to load post with status code: ${response.statusCode}');

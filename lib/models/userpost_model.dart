@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'post_model.g.dart';
+part 'userpost_model.g.dart';
 
 @JsonSerializable()
-class PostModel {
+class UserPost {
   final String username;
   @JsonKey(name: 'profile_pic')
   final String profilePic;
@@ -15,7 +15,7 @@ class PostModel {
   @JsonKey(name: 'post_text')
   final String postText;
 
-  PostModel({
+  UserPost({
     required this.username,
     required this.profilePic,
     required this.image,
@@ -25,7 +25,7 @@ class PostModel {
     required this.postText,
   });
 
-  factory PostModel.fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
-  Map<String, dynamic> toJson() => _$PostModelToJson(this);
+  factory UserPost.fromJson(Map<String, dynamic> json) => _$UserPostFromJson(json);
+  Map<String, dynamic> toJson() => _$UserPostToJson(this);
 }
 
