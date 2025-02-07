@@ -1,7 +1,7 @@
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/dark-logo.png"
+  image_path: "assets/images/logo.png"
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/images/dark-logo.png"
+  adaptive_icon_foreground: "assets/images/logo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
