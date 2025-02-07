@@ -1,3 +1,6 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'highlight_model.g.dart';
+
 
 @JsonSerializable()
 class Highlight {
@@ -10,12 +13,3 @@ class Highlight {
   Map<String, dynamic> toJson() => _$HighlightToJson(this);
 }
 
-@JsonSerializable()
-class GalleryItem {
-  final String image;
-
-  GalleryItem({required this.image});
-
-  factory GalleryItem.fromJson(Map<String, dynamic> json) => _$GalleryItemFromJson(json);
-  Map<String, dynamic> toJson() => _$GalleryItemToJson(this);
-}

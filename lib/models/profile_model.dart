@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'bio_model.dart';
+import 'gallery_item_model.dart';
 import 'highlight_model.dart';
 
 part 'profile_model.g.dart';
