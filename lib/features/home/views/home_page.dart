@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
             return ListView(
               children: [
                 StoryList(stories: feedProvider.feedModel!.stories),
-                SizedBox(height: 400, child: PostList(posts: feedProvider.feedModel!.posts)),
+                PostList(posts: feedProvider.feedModel!.posts),
               ],
             );
           }
