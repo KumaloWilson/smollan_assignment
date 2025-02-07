@@ -20,7 +20,14 @@ class ProfilePostsGrid extends StatelessWidget {
       itemCount: posts.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () => onPostTap(index),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PostScreen(postId: posts[index].id),
+              ),
+            );
+          },
           child: Image.network(
             posts[index].image,
             fit: BoxFit.cover,
@@ -30,4 +37,3 @@ class ProfilePostsGrid extends StatelessWidget {
     );
   }
 }
-
