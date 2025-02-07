@@ -4,9 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:smollan_assignment/core/constants/color_constants.dart';
 import '../../../providers/post_provider.dart';
+import '../../../widgets/error_widgets/error_widget.dart';
 import '../../../widgets/post_widgets/post_header.dart';
 import '../../../widgets/post_widgets/post_image.dart';
 import '../../../widgets/post_widgets/reaction_button.dart';
+import '../../../widgets/skeleton_widgets/post_skeleton.dart';
 class PostScreen extends StatefulWidget {
   final String postId;
 
@@ -48,11 +50,21 @@ class _PostScreenState extends State<PostScreen> {
       body: Consumer<PostProvider>(
         builder: (context, postProvider, child) {
           if (postProvider.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return PostSkeleton();
           } else if (postProvider.error != null) {
-            return Center(child: Text('Error: ${postProvider.error}'));
+            return ErrorScreen(
+              message: postProvider.error!,
+              onRetry: (){
+                postProvider.fetchPost(widget.postId);
+              }
+            );
           } else if (postProvider.post == null) {
-            return Center(child: Text('No post data available'));
+            return ErrorScreen(
+              message: 'No post data available',
+                onRetry: (){
+                  postProvider.fetchPost(widget.postId);
+                }
+            );
           } else {
             final post = postProvider.post!;
             return SingleChildScrollView(

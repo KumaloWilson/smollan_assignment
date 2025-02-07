@@ -5,9 +5,9 @@ import 'package:smollan_assignment/core/constants/image_asset_constants.dart';
 import 'package:smollan_assignment/widgets/story_widgets/story_list.dart';
 import '../../../providers/feed_provider.dart';
 import '../../../providers/theme_provider.dart';
+import '../../../widgets/error_widgets/error_widget.dart';
 import '../../../widgets/post_widgets/post_list.dart';
-import '../../../widgets/story_widgets/story_circle.dart';
-
+import '../../../widgets/skeleton_widgets/post_skeleton.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -81,11 +81,23 @@ class _HomePageState extends State<HomePage> {
       body: Consumer<FeedProvider>(
         builder: (context, feedProvider, child) {
           if (feedProvider.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return ListView(
+              physics: BouncingScrollPhysics(),
+              children: [
+                StoryList(stories: []),
+                PostSkeleton()
+              ],
+            );
           } else if (feedProvider.error != null) {
-            return Center(child: Text('Error: ${feedProvider.error}'));
+            return ErrorScreen(
+              message: feedProvider.error!,
+              onRetry: feedProvider.fetchFeed,
+            );
           } else if (feedProvider.feedModel == null) {
-            return Center(child: Text('No data available'));
+            return ErrorScreen(
+              message: 'No post data available',
+              onRetry: feedProvider.fetchFeed,
+            );
           } else {
 
             return ListView(
