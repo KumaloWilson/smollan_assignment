@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../widgets/profile_widgets/profile_action_buttons.dart';
 import '../../../widgets/profile_widgets/profile_header.dart';
 import '../../../widgets/profile_widgets/profile_highlights.dart';
