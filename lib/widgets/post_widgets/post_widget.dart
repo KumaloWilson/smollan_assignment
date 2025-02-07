@@ -3,8 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readmore/readmore.dart';
 import 'package:smollan_assignment/widgets/post_widgets/reaction_button.dart';
 
+import '../../models/post_model.dart';
+
 class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
+  final Post post;
+  const PostWidget({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +16,14 @@ class PostWidget extends StatelessWidget {
       children: [
         ListTile(
           leading: CircleAvatar(
-            backgroundImage: NetworkImage('https://picsum.photos/200'),
+            backgroundImage: NetworkImage(post.profilePic),
           ),
-          title: Text('username'),
-          subtitle: Text('Location'),
+          title: Text(post.username),
+          //subtitle: Text(post.location),
           trailing: Icon(Icons.more_vert),
         ),
         Image.network(
-          'https://picsum.photos/400/400',
+          post.image,
           fit: BoxFit.cover,
           width: double.infinity,
         ),
@@ -59,7 +62,7 @@ class PostWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ReadMoreText(
-                'Proudly presenting the new collection of our brand. We have worked hard to bring you the best quality products. We hope you like them. #brand #newcollection',
+                post.caption,
                 trimLines: 1,
                 colorClickableText: Colors.pink,
                 trimMode: TrimMode.Line,

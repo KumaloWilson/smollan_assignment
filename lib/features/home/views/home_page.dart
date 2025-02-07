@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:smollan_assignment/core/constants/image_asset_constants.dart';
+import 'package:smollan_assignment/widgets/story_widgets/story_list.dart';
 import '../../../providers/feed_provider.dart';
 import '../../../widgets/post_widgets/post_list.dart';
 import '../../../widgets/story_widgets/story_circle.dart';
@@ -78,38 +79,12 @@ class _HomePageState extends State<HomePage> {
           } else if (feedProvider.feedModel == null) {
             return Center(child: Text('No data available'));
           } else {
-            return ListView.builder(
-              itemCount: feedProvider.feedModel!.posts.length,
-              itemBuilder: (context, index) {
-                final post = feedProvider.feedModel!.posts[index];
-                return Card(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(post.profilePic),
-                        ),
-                        title: Text(post.username),
-                      ),
-                      Image.network(post.image),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(post.caption),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextButton(
-                            onPressed: () => feedProvider.incrementLikes(index),
-                            child: Text('Like'),
-                          ),
-                          Text(post.likes.toString()),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
+
+            return ListView(
+              children: [
+                StoryList(stories: feedProvider.feedModel!.stories),
+                PostList(posts: feedProvider.feedModel!.posts),
+              ],
             );
           }
         },

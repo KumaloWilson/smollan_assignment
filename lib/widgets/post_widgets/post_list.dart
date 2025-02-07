@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smollan_assignment/models/post_model.dart';
 import 'package:smollan_assignment/widgets/post_widgets/post_widget.dart';
 
 class PostList extends StatelessWidget {
-  const PostList({super.key});
+  final List<Post> posts;
+  const PostList({super.key, required this.posts});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: 5,
+      itemCount: posts.length,
       itemBuilder: (context, index) {
-        return PostWidget();
+        final post = posts[index];
+        return PostWidget(post: post);
       },
     );
+
   }
 }
