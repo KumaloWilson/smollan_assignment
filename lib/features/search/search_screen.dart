@@ -20,6 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<SearchProvider>(context, listen: false).fetchTrendingSearches();
+      Provider.of<SearchProvider>(context, listen: false).search('h');
     });
   }
 

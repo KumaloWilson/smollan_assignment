@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smollan_assignment/core/utils/logs.dart';
 
 import '../models/search_result.dart';
 import '../models/trending_search.dart';
@@ -56,6 +57,7 @@ class SearchProvider extends ChangeNotifier {
       );
     } catch (e) {
       _error = e.toString();
+      DevLogs.logError(e.toString());
     } finally {
       _isLoading = false;
       notifyListeners();

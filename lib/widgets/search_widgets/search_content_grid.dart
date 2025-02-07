@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/search_provider.dart';
+import '../error_widgets/error_widget.dart';
 
 class SearchGrid extends StatelessWidget {
   const SearchGrid({super.key});
@@ -13,9 +14,20 @@ class SearchGrid extends StatelessWidget {
         if (searchProvider.isLoading) {
           return Center(child: CircularProgressIndicator());
         } else if (searchProvider.error != null) {
-          return Center(child: Text('Error: ${searchProvider.error}'));
+          return ErrorScreen(
+            message: searchProvider.error!,
+            onRetry: (){
+              searchProvider.fetchTrendingSearches();
+            }
+          );
+
         } else if (searchProvider.searchResults.isEmpty) {
-          return Center(child: Text('No results found'));
+          return ErrorScreen(
+              message: 'No results Found',
+              onRetry: (){
+                searchProvider.fetchTrendingSearches();
+              }
+          );
         } else {
           return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
