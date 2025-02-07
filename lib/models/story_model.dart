@@ -1,4 +1,9 @@
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'story_model.g.dart';
+
+
 @JsonSerializable()
 class Story {
   final String username;

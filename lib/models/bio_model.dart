@@ -1,3 +1,6 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'bio_model.g.dart';
+
 
 @JsonSerializable()
 class Bio {

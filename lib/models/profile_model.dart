@@ -1,5 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'bio_model.dart';
+import 'highlight_model.dart';
+
 part 'profile_model.g.dart';
 
 @JsonSerializable()
@@ -25,7 +28,7 @@ class Profile {
     required this.gallery,
   });
 
-  factory Profile.fromJson(Map<String, dynamic> json) => _$ProfileModelFromJson(json);
-  Map<String, dynamic> toJson() => _$ProfileModelToJson(this);
+  factory Profile.fromJson(Map<String, dynamic> json) => _$ProfileFromJson(json);
+  Map<String, dynamic> toJson() => _$ProfileToJson(this);
 }
 

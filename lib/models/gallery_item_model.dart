@@ -1,4 +1,8 @@
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'gallery_item_model.g.dart';
+
 @JsonSerializable()
 class GalleryItem {
   final String image;
